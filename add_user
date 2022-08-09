@@ -1,0 +1,18 @@
+!/bin/bash
+
+#go into the root
+sudo su
+
+
+#add user 
+useradd bash1
+
+
+#create group
+groupadd excercise1
+
+
+#add user to group
+usermod -aG excercise1 bash1
+
+

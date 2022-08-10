@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+
+#created list of foods
+mexican = ["Tacos", "Machacas", "Chilaquila"]
+american = ["applePie", "CheeseBurger", "Pizza"]
+ghanaian = ["banku", "fufu", "ebunuebunu"]
+
+fav_foods = [ghanaian] + [mexican] + [american]
+
+#print all favorite foods
+print(fav_foods)
+
+#print most favorite food
+print(fav_foods[2][0])
+
+#Dictionary
+heros = {
+       " aladin": {"book": "aladin1",
+        "year": 2000,
+        "movie": True},
+       "antman": {"book": "antman1",
+        "year": 2040,
+        "movie": False},
+       "aslan": {"book": "aslan1",
+        "year": 2014,
+        "movie": False}
+      }
+#print keys
+print(heros.keys())
+
+#print values
+print(heros.values())

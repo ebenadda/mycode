@@ -9,14 +9,14 @@ with open('dnsservers.txt', 'r') as servers:
         svr = svr.rstrip('\n')
 
 
-#if svnl ends with .com, put it in a different folder
-        if svr.endswith('com'):
-            with open('servers_com.txt', 'a') as newseverlist:
-                newseverlist.write(svr + '\n')
-
-#if svrnl ends with .org
+#if svnl ends with .org, put it in a different folder
         if svr.endswith('org'):
             with open('servers_org.txt', 'a') as newseverlist:
+                newseverlist.write(svr + '\n')
+
+#if svrnl ends with .com
+        if svr.endswith('com'):
+            with open('servers_com.txt', 'a') as newseverlist:
                 newseverlist.write(svr + '\n')
 
 #that is it. we should have two new folders in our fact2 folder with the names we created above. 

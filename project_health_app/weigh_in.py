@@ -4,6 +4,17 @@
 This app is part of a project for my python class.
 It takes in user values and calcultes the MBI for the user.'''
 
+#Imports
+from datetime import date
+from datetime import datetime
+
+#Generate date
+now = datetime.now()
+current_time = now.strftime("%H:%M:%S")
+
+#Generate date
+today = date.today()
+
 #Ask user for their name
 user = input("What is your name?")
 
@@ -34,3 +45,5 @@ else:
     print(f"Your BMI of {BMI} is higher than the normal range of 18.5 and 24.9!")
     print('Follow our healthy habbits guide for ways to get healthier')
 
+#print date and time stamp
+print(f'\nOn {today} at {current_time}, you checked your BMI and found it to be {BMI}')

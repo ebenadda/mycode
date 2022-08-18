@@ -1,0 +1,9 @@
+#!/usr/bin/python3
+
+import pandas as pd
+
+# read contents of csv file
+data = pd.read_csv("bmi_data1.csv", names = ['date', 'time', 'name', 'age', 'weight', 'height','bmi'])
+
+#print the original file
+print(data)

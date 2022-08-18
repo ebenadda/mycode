@@ -8,6 +8,7 @@ It takes in user values and calcultes the MBI for the user.'''
 from datetime import date
 from datetime import datetime
 import csv
+import pandas as pd
 
 #Inititiate csv function
 def create_csv(rows):
@@ -16,18 +17,33 @@ def create_csv(rows):
 
         #create the csv writer
         file_write = csv.writer(file)
-        
-       # file_write.writerow(['date', 'time', 'name', 'age', 'weight', 'height'])
-        
+             
         #Iterate over the data in the row
         for val in rows:
             file_write.writerow(val)
 
-# list that store the values of the rows
+#Append header to CSV file
+def append_header():
+    data = pd.read_csv("bmi_data1.csv", names = ['date', 'time', 'name', 'age', 'weight', 'height','bmi'])
+    #print the original file
+    print(data)
+
+
+#Append input to list
+def append_input():
+    val.append(today)
+    val.append(current_time)
+    val.append(name)
+    val.append(age)
+    val.append(weight)
+    val.append(height)
+    val.append(BMI)
+
+
+# list that stores the values of the row
 rows = []
 
-# while loop to take
-# inputs from the user
+# while loop to take inputs from the user
 run = ''
 while run != 'no':
     
@@ -35,11 +51,16 @@ while run != 'no':
     val = []
 
     #Take user information
-    name = input("What is your name?")
-    age = int(input("Enter your age:- "))
+    while True:
+        name = input("What is your name?")
+        name = name.capitalize()
+        if name.isalpha() == True:
+            print(f'\nWelcome {name}, we are happy to help you stay healthy.')
+            break
+        else:
+            print("Name has to be in alphabets only.")
+    age = int(input("Pleae enter your age:- "))
 
-    #Print welcome message
-    print(f'\nWelcome {name}, we are happy to help you stay healthy.')
     print('Answer a couple more questions to get going.')
 
     #Ask user for their weight
@@ -59,14 +80,7 @@ while run != 'no':
     today = date.today()
 
     # Appending the inputs and calculations in a list
-    val.append(today)
-    val.append(current_time)
-    val.append(name)
-    val.append(age)
-    val.append(weight)
-    val.append(height)
-    val.append(BMI)
-
+    append_input()
 
     #Report Calculated BMI to user
     print(f'\n{name}, Based on the information you provided, your BMI is {BMI} kg/m\u00b2')
@@ -95,3 +109,11 @@ while run != 'no':
 
 #call on function to create_csv function
 create_csv(rows)
+append_header()
+
+'''#Append header to CSV file
+def append_header():
+    data = pd.read_csv("bmi_data1.csv", names = ['date', 'time', 'name', 'age', 'weight', 'height','bmi'])
+    #print the original file
+    print(data)'''
+

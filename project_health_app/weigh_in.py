@@ -36,20 +36,20 @@ while run != 'no':
 
     #Take user information
     name = input("What is your name?")
-    age = input("Enter your age:- ")
+    age = int(input("Enter your age:- "))
 
     #Print welcome message
-    print(f'\nWelcome {user}, we are happy to help you stay healthy.')
+    print(f'\nWelcome {name}, we are happy to help you stay healthy.')
     print('Answer a couple more questions to get going.')
 
     #Ask user for their weight
-    weight = input("\nPlease input your weight in kilos: ")
+    weight = float(input("\nPlease input your weight in kilos: "))
 
     #Ask user for their height
-    height = input("\nPlease input your height in meters: ")
+    height = float(input("\nPlease input your height in meters: "))
 
     #Calculate BMI
-    BMI = (int(us_weight)/(int(us_height)*int(us_height)))
+    BMI = round((weight/(height*height)), 1)
 
     #Generate date
     now = datetime.now()
@@ -69,10 +69,10 @@ while run != 'no':
 
 
     #Report Calculated BMI to user
-    print(f'\n{user}, Based on the information you provided, your BMI is {BMI} kg/m\u00b2')
+    print(f'\n{name}, Based on the information you provided, your BMI is {BMI} kg/m\u00b2')
 
     if (BMI >= 18.5 and BMI <= 24.9):
-        print(f'{user}, your BMI is within the normal range. Keep up with your healthy habits.')
+        print(f'{name}, your BMI is within the normal range. Keep up with your healthy habits.')
     elif BMI <18.5:
         print(f'Your BMI of {BMI} is lower than expected.')
         print(f'The normal range of BMI is 18.5 and 24.9!')

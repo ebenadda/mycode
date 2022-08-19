@@ -11,19 +11,6 @@ import csv
 import pandas as pd
 from matplotlib import pyplot as plt
 
-val = []
-#Generate date
-now = datetime.now()
-current_time = now.strftime("%H:%M:%S")
-
-#Generate date
-today = date.today()
-name = ''
-age = ''
-height = ''
-weight = ''
-BMI = ''
-
 #Inititiate csv function
 def create_csv():
     '''This function creates the csv file into which user information is stored.
@@ -53,7 +40,7 @@ def append_header():
                 'height',
                 'bmi'])
     #convert back to csv without index
-    data.to_csv("bmi_data5.csv", index=False)
+    data.to_csv("bmi_data7.csv", index=False)
 
     #print the new file
     print(data)
@@ -78,7 +65,7 @@ def graphin():
     plt.rcParams["figure.autolayout"] = True
 
     # Read a CSV file
-    df = pd.read_csv("bmi_data3.csv")
+    df = pd.read_csv("bmi_data7.csv")
 
     # Plot the line graph with the specified labels
     df.plot(x='date',y='bmi',xticks=df.index)
@@ -86,80 +73,48 @@ def graphin():
     plt.xlabel('Date')
     plt.ylabel('BMI kg/m\u00b2')
     #plt.show()
-    
+
     #Save the graph to a desired location
-    #plt.savefig('/home/student/static/bmi_graph88888888.png')
-    plt.savefig('/home/student/mycode/project_health_app/bmi_graph.png')
-    
+    #plt.savefig('/home/student/static/bmi_graph8.png')
+    plt.savefig('/home/student/mycode/project_health_app/bmi_graph1.png')
 
 # list that stores the values of the row
 rows = []
 
 # while loop to take inputs from the user
-#run  = ' '
-#while run != 'no':
+run  = ' '
+while run != 'no':
     # lists to store the user data
-   # val = []
+    val = []
 
-#Take user information
-def get_user_info():
-    global name, age, weight, height
-    #run = ' '
+    #Take user information
     while True:
-        # lists to store the user data
-   #     val = []
-        try:
-            name = input("Please type your name in alphabets:-")
-            if type(name) is not str:
-                print("Name must be a string")
-                continue 
-            name = name.capitalize()
-            if name.isalpha() is True:
-                print(f'\nWelcome {name}!')
-                try:
-                    age = int(input("\nPleae enter your age:- "))
-                    weight = float(input("\nPlease input your weight in kilos: "))
-                    height = float(input("\nPlease input your height in meters: "))
-                    if 0 < age and 0 < weight and 0 < height < 150:
-                        return age, weight, height
-                        break
-                except ValueError:
-                    print('\nInvalid age, height or weight.')
+        name = input("\nWhat is your name?")
+        name = name.capitalize()
+        if name.isalpha() is True:
+            print(f'\nWelcome {name}, we are happy to help you stay healthy.')
             break
-        except:
-            print("\nOnly alphabets allowed for name.\n")
-        break
-'''run = input("Do you want to check the BMI of another person? Type Yes or No:- ")
-        run = run.lower()
-        try:
-        age = int(input("\nPleae enter your age:- "))
-        weight = float(input("\nPlease input your weight in kilos: "))
-        height = float(input("\nPlease input your height in meters: "))
-        if 0 < age and 0 < weight and 0 < height < 150:
-            return age, weight, height
-        else:
-            raise ValueError('Invalid age, height or weight. Lets try again.')
-    except ValueError:
-       print('\nInvalid age, height or weight.')      
-        
-   # run = input("Do you want to check the BMI of another person? Type Yes or No:- ")
-    #run = run.lower()'''
+        print("\nName has to be in alphabets only.")
 
+    age = int(input("\nPlease enter your age:- "))
 
+    print('\nAnswer a couple more questions to get going.')
 
-#Calculate BMI
-def calculate_bmi():
-    global BMI, age, weight, height
-    age, weight, height = get_user_info()
+    #Ask user for their weight
+    weight = float(input("\nPlease input your weight in kilos: "))
+
+    #Ask user for their height
+    height = float(input("\nPlease input your height in meters: "))
+
+    #Calculate BMI
     BMI = round((weight/(height*height)), 1)
 
-    
     #Generate date
-    #now = datetime.now()
-    #current_time = now.strftime("%H:%M:%S")
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
 
     #Generate date
-    #today = date.today()
+    today = date.today()
 
     # Appending the inputs and calculations in a list
     append_input()
@@ -168,39 +123,26 @@ def calculate_bmi():
     print(f'\n{name}, Based on the information you provided, your BMI is {BMI} kg/m\u00b2')
 
     if 24.9 >= BMI >= 18.5:
-        print(f'\n{name}, your BMI is within the normal range of 18.5 to 24.9.')
+        print(f'\n{name}, your BMI is within the normal range. Keep up with your healthy habits.')
     elif BMI <18.5:
         print(f'\nYour BMI of {BMI} is lower than expected.')
         print('\nThe normal range of BMI is 18.5 and 24.9!')
-        print('\nLets get to work to get you healthy')
     else:
         print(f"\nYour BMI of {BMI} is higher than the normal range of 18.5 and 24.9!")
-        print('Follow our healthy habbits guide for ways to get healthier')
 
     #print date and time stamp
     print(f'\nOn {today} at {current_time}, you checked your BMI and found it to be {BMI}')
 
     #Time setter to remind user of next time to come take test instead
     # If user enters 'no' then the will loop will break
-    #run = input("Do you want to check the BMI of another person? Type Yes or No:- ")
-    #run = run.lower()
+    run = input("\nDo you want to check the BMI of another person? Type Yes or No:- ")
+    run = run.lower()
 
 
     # Adding the stored data in rows list
     rows.append(val)
 
-#Call User inuput function
-#get_user_info()
-
-#cal
-calculate_bmi()
-
 #call on function to create_csv function
 create_csv()
-
-#Call function to append header
 append_header()
-
-#Call function to calculate graph
 graphin()
-

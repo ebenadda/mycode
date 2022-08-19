@@ -9,6 +9,7 @@ from datetime import date
 from datetime import datetime
 import csv
 import pandas as pd
+from matplotlib import pyplot as plt
 
 #Inititiate csv function
 def create_csv():
@@ -38,8 +39,10 @@ def append_header():
                 'weight',
                 'height',
                 'bmi'])
+    #convert back to csv without index
+    data.to_csv("bmi_data5.csv", index=False)
 
-    #print the original file
+    #print the new file
     print(data)
 
 #Append input to list
@@ -123,3 +126,5 @@ while run != 'no':
 #call on function to create_csv function
 create_csv()
 append_header()
+
+
